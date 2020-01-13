@@ -17,6 +17,7 @@ LOCAL_PATH := vendor/slimaospstyle
 # Prebuilt Packages
 PRODUCT_PACKAGES += \
     NexusLauncherRelease \
+    LensStub \
     NexusWallpapersStubPrebuilt2019Static \
     PixelThemesStub2019 \
     SafetyHubPrebuilt \
@@ -37,12 +38,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ifeq ($(TARGET_BOOT_ANIMATION_RES),1080)
      PRODUCT_COPY_FILES += $(LOCAL_PATH)/bootanimation/bootanimation_1080.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
      PRODUCT_COPY_FILES += $(LOCAL_PATH)/bootanimation/bootanimation-dark_1080.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation-dark.zip
-else ifeq ($(TARGET_BOOT_ANIMATION_RES),1440)
-     PRODUCT_COPY_FILES += $(LOCAL_PATH)/bootanimation/bootanimation_1440.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
-     PRODUCT_COPY_FILES += $(LOCAL_PATH)/bootanimation/bootanimation-dark_1440.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation-dark.zip
-else ifeq ($(TARGET_BOOT_ANIMATION_RES),720)
-     PRODUCT_COPY_FILES += $(LOCAL_PATH)/bootanimation/bootanimation_720.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
-     PRODUCT_COPY_FILES += $(LOCAL_PATH)/bootanimation/bootanimation-dark_720.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation-dark.zip
 else
     ifeq ($(TARGET_BOOT_ANIMATION_RES),)
         $(warning "SlimAOSPStyle: TARGET_BOOT_ANIMATION_RES is undefined, assuming 1080p")
@@ -72,9 +67,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Sounds
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=MI.ogg \
-    ro.config.notification_sound=Popcorn.ogg \
-    ro.config.alarm_alert=Bright_morning.ogg
+    ro.config.ringtone=Mi.ogg \
+    ro.config.notification_sound=Slim.ogg \
+    ro.config.alarm_alert=Sunshower.ogg
 
 # IME
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -86,3 +81,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(LOCAL_PATH)/overlay
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay/common/
+
+# LiveCaptionOverlay
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/xbin/sqlite3:$(TARGET_COPY_OUT_SYSTEM)/xbin/sqlite3
